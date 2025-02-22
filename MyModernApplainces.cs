@@ -17,31 +17,59 @@ namespace ModernAppliances
         public override void Checkout()
         {
             // Write "Enter the item number of an appliance: "
+            Console.Write("Enter the item number of an appliance: ");
 
             // Create long variable to hold item number
+            long itemNumber;
 
             // Get user input as string and assign to variable.
             // Convert user input from string to long and store as item number variable.
+            string input = Console.ReadLine();
+            if (!long.TryParse(input, out itemNumber))
+            {
+                Console.WriteLine("Invalid item number format.");
+                return;
+            }
 
             // Create 'foundAppliance' variable to hold appliance with item number
             // Assign null to foundAppliance (foundAppliance may need to be set as nullable)
+            Appliance foundAppliance = null;
 
             // Loop through Appliances
-            // Test appliance item number equals entered item number
-            // Assign appliance in list to foundAppliance variable
+            foreach (var appliance in ApplianceList)
+            {
+                // Test appliance item number equals entered item number
+                if (appliance.ItemNumber == itemNumber)
+                {
+                    // Assign appliance in list to foundAppliance variable
+                    foundAppliance = appliance;
 
-            // Break out of loop (since we found what need to)
+                    // Break out of loop (since we found what need to)
+                    break;
+                }
+            }
 
             // Test appliance was not found (foundAppliance is null)
-            // Write "No appliances found with that item number."
-
+            if (foundAppliance == null)
+            {                                              
+                // Write "No appliances found with that item number."
+                Console.WriteLine("No appliances found with that item number.");
+            }
             // Otherwise (appliance was found)
-            // Test found appliance is available
-            // Checkout found appliance
-
-            // Write "Appliance has been checked out."
-            // Otherwise (appliance isn't available)
-            // Write "The appliance is not available to be checked out."
+            else if (foundAppliance.Quantity > 0)
+            {
+                // Test found appliance is available
+                // Checkout found appliance
+                foundAppliance.Quantity = foundAppliance.Quantity - 1;de3 
+                // Write "Appliance has been checked out."
+                Console.WriteLine("Appliance has been checked out.");
+            }
+            else
+            {
+                // Otherwise (appliance isn't available)
+                // Write "The appliance is not available to be checked out."
+                Console.WriteLine("The appliance is not available to be checked out.");
+            }
         }
 
         /// <summary>
@@ -50,19 +78,29 @@ namespace ModernAppliances
         public override void Find()
         {
             // Write "Enter brand to search for:"
+            Console.Write("Enter brand to search for: ");
 
             // Create string variable to hold entered brand
             // Get user input as string and assign to variable.
+            string brand = Console.ReadLine();
 
             // Create list to hold found Appliance objects
+            List<Appliance> foundAppliances = new List<Appliance>();
 
             // Iterate through loaded appliances
-            // Test current appliance brand matches what user entered
-            // Add current appliance in list to found list
-
+            foreach (var appliance in ApplianceList)
+            {
+                // Test current appliance brand matches what user entered
+                if (appliance.Brand.ToLower() == brand.ToLower())
+                {
+                    // Add current appliance in list to found list
+                    foundAppliances.Add(appliance);
+                }
+            }
 
             // Display found appliances
             // DisplayAppliancesFromList(found, 0);
+            DisplayAppliancesFromList(foundAppliances, 0);
         }
 
         /// <summary>
@@ -71,32 +109,58 @@ namespace ModernAppliances
         public override void DisplayRefrigerators()
         {
             // Write "Possible options:"
+            Console.WriteLine("Possible options:");
 
             // Write "0 - Any"
+            Console.WriteLine("0 - Any");
+
             // Write "2 - Double doors"
+            Console.WriteLine("2 - Double doors");
+
             // Write "3 - Three doors"
+            Console.WriteLine("3 - Three doors");
+
             // Write "4 - Four doors"
+            Console.WriteLine("4 - Four doors");
 
             // Write "Enter number of doors: "
-
-            // Create variable to hold entered number of doors
+            Console.Write("Enter number of doors: ");
 
             // Get user input as string and assign to variable
+            // Create variable to hold entered number of doors
+            string input = Console.ReadLine();
+            int numberOfDoors;
 
             // Convert user input from string to int and store as number of doors variable.
+            if (!int.TryParse(input, out numberOfDoors) || (numberOfDoors != 0 && numberOfDoors != 2 && numberOfDoors != 3 && numberOfDoors != 4))
+            {
+                Console.WriteLine("Invalid input. Please enter 0, 2, 3, or 4.");
+                return;
+            }
 
             // Create list to hold found Appliance objects
+            List<Appliance> foundAppliances = new List<Appliance>();
 
             // Iterate/loop through Appliances
-            // Test that current appliance is a refrigerator
-            // Down cast Appliance to Refrigerator
-            // Refrigerator refrigerator = (Refrigerator) appliance;
+            foreach (var appliance in ApplianceList)
+            {
+                // Test that current appliance is a refrigerator
+                if (appliance is Refrigerator)
+                {
+                    // Down cast Appliance to Refrigerator
+                    Refrigerator refrigerator = (Refrigerator)appliance;
 
-            // Test user entered 0 or refrigerator doors equals what user entered.
-            // Add current appliance in list to found list
+                    // Test user entered 0 or refrigerator doors equals what user entered.
+                    if (numberOfDoors == 0 || refrigerator.Doors == numberOfDoors)
+                    {
+                        // Add current appliance in list to found list
+                        foundAppliances.Add(refrigerator);
+                    }
+                }
+            }
 
             // Display found appliances
-            // DisplayAppliancesFromList(found, 0);
+            DisplayAppliancesFromList(foundAppliances, 0);
         }
 
         /// <summary>

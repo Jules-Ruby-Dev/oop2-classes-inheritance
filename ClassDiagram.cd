@@ -30,7 +30,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ModernAppliances.ModernAppliances">
-    <Position X="6.5" Y="6.25" Width="1.5" />
+    <Position X="13" Y="3" Width="1.5" />
     <NestedTypes>
       <Enum Name="ModernAppliances.ModernAppliances.Options" Collapsed="true">
         <TypeIdentifier>
@@ -44,7 +44,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ModernAppliances.MyModernAppliances">
-    <Position X="3" Y="6.75" Width="1.5" />
+    <Position X="11.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAABAAAAAQgAAEAAAAIAAAAEAAAAAAAAAA=</HashCode>
       <FileName>MyModernAppliances.cs</FileName>

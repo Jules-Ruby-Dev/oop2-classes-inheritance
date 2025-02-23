@@ -296,8 +296,8 @@ namespace ModernAppliances
 
             // Not really sure if the do...while loop is necessary, instructions don't ask for it
             // Will ask Rocky his opinion
-            do
-            {
+            //do
+            //{
 
                 // Write "Possible options:"
                 // Write "0 - Any"
@@ -313,7 +313,7 @@ namespace ModernAppliances
                 if (String.IsNullOrWhiteSpace(userInput))
                 {
                     Console.WriteLine("\nPlease enter a value that is not empty or only whitespace!");
-                    continue;
+                    //continue;
                 }
 
                 //string trimmedInput = userInput.IsNullOrWhites userInput.Trim();
@@ -374,7 +374,7 @@ namespace ModernAppliances
                  DisplayAppliancesFromList(foundAppliances, 0);
 
 
-            } while (true);
+            //} while (true);
         }
 
         /// <summary>
@@ -399,8 +399,8 @@ namespace ModernAppliances
                     "\t4 - Moderate\n\n" +
                     "Enter sound rating: ";
 
-            do
-            {
+            //do
+            //{
 
                 Console.WriteLine(userPrompt);
 
@@ -410,7 +410,7 @@ namespace ModernAppliances
                 if (String.IsNullOrWhiteSpace(userInput))
                 {
                     Console.WriteLine("\nPlease enter a value that is not empty or only whitespace!");
-                    continue;
+                    //continue;
                 }
 
                 // Create variable that holds sound rating
@@ -472,7 +472,7 @@ namespace ModernAppliances
 
                 // Display found appliances (up to max. number inputted)
                 DisplayAppliancesFromList(foundAppliances, 0);
-            } while (true);
+            //} while (true);
         }
 
         /// <summary>

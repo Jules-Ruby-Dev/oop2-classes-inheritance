@@ -40,7 +40,7 @@ namespace ModernAppliances
             Appliance foundAppliance = null;
 
             // Loop through Appliances
-            foreach (var appliance in ApplianceList)
+            foreach (var appliance in Appliances)
             {
                 // Test appliance item number equals entered item number
                 if (appliance.ItemNumber == itemNumber)
@@ -64,7 +64,8 @@ namespace ModernAppliances
             {
                 // Test found appliance is available
                 // Checkout found appliance
-                foundAppliance.Quantity = foundAppliance.Quantity - 1; de3
+                foundAppliance.DecreaseQuantity();
+
                 // Write "Appliance has been checked out."
                 Console.WriteLine("Appliance has been checked out.");
             }
@@ -92,7 +93,7 @@ namespace ModernAppliances
             List<Appliance> foundAppliances = new List<Appliance>();
 
             // Iterate through loaded appliances
-            foreach (var appliance in ApplianceList)
+            foreach (var appliance in Appliances)
             {
                 // Test current appliance brand matches what user entered
                 if (appliance.Brand.ToLower() == brand.ToLower())
@@ -146,7 +147,7 @@ namespace ModernAppliances
             List<Appliance> foundAppliances = new List<Appliance>();
 
             // Iterate/loop through Appliances
-            foreach (var appliance in ApplianceList)
+            foreach (var appliance in Appliances)
             {
                 // Test that current appliance is a refrigerator
                 if (appliance is Refrigerator)
@@ -260,7 +261,7 @@ namespace ModernAppliances
             List<Appliance> foundAppliances = new List<Appliance>();
 
             // Loop through Appliances
-            foreach (var appliance in ApplianceList)
+            foreach (var appliance in Appliances)
             {
                 // Check if current appliance is vacuum
                 if (appliance is Vacuum)

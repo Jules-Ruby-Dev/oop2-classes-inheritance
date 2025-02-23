@@ -60,6 +60,7 @@ namespace ModernAppliances.Entities.Abstract
         public int Quantity
         {
             get { return _quantity; }
+            set { _quantity = value; }
         }
 
         /// <summary>
@@ -116,7 +117,14 @@ namespace ModernAppliances.Entities.Abstract
             this._color = color;
             this._price = price;
         }
-
+        // Setter method for quantity
+        public void DecreaseQuantity()
+        {
+            if (Quantity > 0)
+            {
+                Quantity--;
+            }
+        }
         /// <summary>
         /// Checkout appliance
         /// </summary>

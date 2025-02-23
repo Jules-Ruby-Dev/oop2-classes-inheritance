@@ -193,13 +193,16 @@ namespace ModernAppliances
         /// <returns>List of appliances</returns>
         private List<Appliance> ReadAppliances()
         {
+            //Console.WriteLine("Hello?");
             //Directory.CreateDirectory("res");
             List<Appliance> appliances = new List<Appliance>();
             string[] lines = File.ReadAllLines(APPLIANCES_TEXT_FILE);
 
             foreach (string line in lines)
             {
+                //Console.WriteLine(line);
                 Appliance? appliance = this.CreateApplianceFromLine(line);
+                //Console.WriteLine($"Is appliance null? { appliance == null }");
 
                 if (appliance != null)
                 {
@@ -217,7 +220,8 @@ namespace ModernAppliances
         /// <returns>Appliance object (or null if line is invalid)</returns>
         private Appliance? CreateApplianceFromLine(string line)
         {
-            string[] parts = line.Split(';');
+            // Modified this so it wasn't producing an array of length 10, with the tenth entry being an empty string
+            string[] parts = line.TrimEnd(';').Split(';');
 
             string firstDigitStr = line.Substring(0, 1);
             short firstDigit = short.Parse(firstDigitStr);
@@ -259,6 +263,7 @@ namespace ModernAppliances
         /// <returns>Refrigerator object (or null if length of parts is wrong)</returns>
         private Refrigerator? CreateRefrigeratorFromParts(string[] parts)
         {
+            //Console.WriteLine($"Creating fridge from parts...\nparts.Length = {parts.Length}\n\n\nParts: {string.Join("\n",parts)}");
             if (parts.Length != 9)
                 return null;
 

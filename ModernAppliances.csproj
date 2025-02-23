@@ -9,6 +9,13 @@
 
   <ItemGroup>
     <Folder Include="res\" />
+    <File Include="appliances.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="res\appliances.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

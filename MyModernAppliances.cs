@@ -368,25 +368,53 @@ namespace ModernAppliances
         /// </summary>
         public override void RandomList()
         {
-            // Write "Appliance Types"
-
+            // Write "Appliance Types
             // Write "0 - Any"
             // Write "1 – Refrigerators"
             // Write "2 – Vacuums"
             // Write "3 – Microwaves"
             // Write "4 – Dishwashers"
-
             // Write "Enter type of appliance:"
 
+            string userPrompt =
+                   "\nAppliance types:\n\n" +
+                   "\t0 - Any\n" +
+                   "\t1 - Refrigerators\n" +
+                   "\t2 - Vacuums\n" +
+                   "\t3 - Microwaves\n" +
+                   "\t4 - Dishwashers\n\n" +
+                   "Enter type of appliance: ";
+
+            Console.Write(userPrompt);
+
             // Get user input as string and assign to appliance type variable
+            string? typeInput = Console.ReadLine().Trim();
 
+            if (String.IsNullOrWhiteSpace(typeInput))
+            {
+                Console.WriteLine("\nPlease enter a value that is not empty or only whitespace!");
+                return;
+                //continue;
+            }
+;
             // Write "Enter number of appliances: "
-
             // Get user input as string and assign to variable
+            Console.Write("\nEnter number of appliances: ");
+            string? amountInput = Console.ReadLine().Trim();
 
             // Convert user input from string to int
+            bool validInteger = int.TryParse(amountInput, out int parsedAmount);
+
+            if (!validInteger)
+            {
+                Console.WriteLine("\nPlease enter a valid integer!");
+                return;
+            }
+
 
             // Create variable to hold list of found appliances
+            // if the user input is "0" then we just copy the whole Appliances List over
+            List<Appliance> foundAppliances = typeInput != "0" ? new List<Appliance>() : Appliances.ToList();
 
             // Loop through appliances
             // Test inputted appliance type is "0"
@@ -404,11 +432,53 @@ namespace ModernAppliances
             // Test current appliance type is Dishwasher
             // Add current appliance in list to found list
 
+            // If user input is not "0", then we loop through and check the types and add them
+            // definitely a better way to do this but I am up passed my bedtime
+            if (typeInput != "0")
+            {
+                foreach (Appliance appliance in Appliances)
+                {
+                    switch (typeInput)
+                    {
+                        case "1":
+                            if (appliance is Refrigerator)
+                            {
+                                foundAppliances.Add(appliance);
+                            }
+                            break;
+                        case "2":
+                            if (appliance is Vacuum)
+                            {
+                                foundAppliances.Add(appliance);
+                            }
+                            break;
+                        case "3":
+                            if (appliance is Microwave)
+                            {
+                                foundAppliances.Add(appliance);
+                            }
+                            break;
+                        case "4":
+                            if (appliance is Dishwasher)
+                            {
+                                foundAppliances.Add(appliance);
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("\nSOMETHING WEIRD IS GOING ON!!");
+                            break;
+
+                    }
+                }
+
+            }
+
+
             // Randomize list of found appliances
-            // found.Sort(new RandomComparer());
+            foundAppliances.Sort(new RandomComparer());
 
             // Display found appliances (up to max. number inputted)
-            // DisplayAppliancesFromList(found, num);
+            DisplayAppliancesFromList(foundAppliances, parsedAmount);
         }
     }
 }
